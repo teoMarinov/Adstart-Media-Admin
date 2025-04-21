@@ -1,10 +1,7 @@
-// src/pages/QuotesPage/index.tsx
-
 import React from "react";
 import {
   Container,
   Typography,
-  Grid,
   Box,
   CircularProgress,
 } from "@mui/material";
@@ -15,30 +12,31 @@ const QuotesPage: React.FC = () => {
   const { quoteRequests, loading } = useQuoteRequest();
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
-        Quote Requests
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{ fontWeight: "bold", color: "#4A3AFF", textAlign: "center" }}
+      >
+        Project Quote Requests
       </Typography>
 
       {loading ? (
-        <Box display="flex" justifyContent="center" alignItems="center">
+        <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
           <CircularProgress />
         </Box>
       ) : (
-        <Grid container spacing={2}>
+        <Box>
           {quoteRequests.map((quoteRequest) => (
-            <Grid
-              key={quoteRequest.id}
-              component="div"  // Ensure 'component' is set
-            >
+            <Box key={quoteRequest.id}>
               <QuoteRequestCard
                 service={quoteRequest.service}
                 priceRange={quoteRequest.priceRange}
                 createdAt={quoteRequest.createdAt}
               />
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
       )}
     </Container>
   );
