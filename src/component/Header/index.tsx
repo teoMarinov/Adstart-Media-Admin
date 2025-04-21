@@ -13,7 +13,7 @@ const Header: React.FC = () => {
       sx={{
         background: "white",
         boxShadow: "none",
-        borderBottom: "1px solid #ddd",
+        borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -26,9 +26,16 @@ const Header: React.FC = () => {
           />
           <Typography variant="h6" component="div">
             <span style={{ color: "black", fontWeight: "600" }}>brix </span>
-            <span style={{ color: "#4A3AFF", fontWeight: "600" }}>
-              templates
-            </span>
+            <Box
+              component={"span"}
+              sx={{
+                display: "inline",
+                color: "primary.main",
+                fontWeight: "600",
+              }}
+            >
+              Admin
+            </Box>
           </Typography>
         </Box>
 
@@ -36,11 +43,11 @@ const Header: React.FC = () => {
           variant="contained"
           onClick={logout}
           sx={{
-            backgroundColor: "#4A3AFF",
+            backgroundColor: "primary.main",
             borderRadius: "20px",
             textTransform: "none",
             px: 3,
-            "&:hover": { backgroundColor: "#3a2ed8" },
+            "&:hover": { backgroundColor: "primary.light" },
           }}
         >
           Logout

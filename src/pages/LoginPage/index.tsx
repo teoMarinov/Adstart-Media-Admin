@@ -91,8 +91,6 @@ const LoginPage = () => {
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
             sx={{ mb: 4 }}
           />
 
@@ -101,14 +99,14 @@ const LoginPage = () => {
             type="submit"
             variant="contained"
             sx={{
-              backgroundColor: "#4A3AFF",
+              backgroundColor: "primary.main",
               color: "white",
               borderRadius: "30px",
               textTransform: "none",
               fontSize: "16px",
               p: 1.5,
               "&:hover": {
-                backgroundColor: "#3e33d3",
+                backgroundColor: "primary.light",
               },
             }}
           >

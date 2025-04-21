@@ -26,7 +26,7 @@ const QuoteRequestCard: React.FC<QuoteRequestCardProps> = ({
       <Typography
         variant="h6"
         sx={{
-          color: "#4A3AFF",
+          color: "primary.main",
           fontWeight: "600",
           mb: 1,
         }}
