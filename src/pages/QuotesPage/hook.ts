@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../config/axios';
-import { QuoteRequest } from './types';
+import { QuoteRequestFull } from './types';
 
 const useQuoteRequest = () => {
-  const [quoteRequests, setQuoteRequests] = useState<QuoteRequest[]>([]);
+  const [quoteRequests, setQuoteRequests] = useState<QuoteRequestFull[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
