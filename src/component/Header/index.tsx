@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Logo and brand */}
+
         <Box display="flex" alignItems="center" sx={{ userSelect: "none" }}>
           <img
             src="/site-icon.svg"
