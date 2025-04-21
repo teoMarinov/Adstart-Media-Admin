@@ -24,6 +24,7 @@ const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: 500,
+          maxWidth: '90dvw',
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 3,
