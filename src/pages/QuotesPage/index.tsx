@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, CircularProgress } from "@mui/material";
+import { Container, Typography, Box, CircularProgress, Pagination } from "@mui/material";
 import useQuoteRequest from "./hook";
 import QuoteRequestCard from "./components/QuoteRequestCard";
 import QuoteRequestModal from "./components/QuoteRequestModal";
 import { QuoteRequestFull } from "./types";
 
 const QuotesPage: React.FC = () => {
-  const { quoteRequests, loading } = useQuoteRequest();
+  const [page, setPage] = useState(0);
+  const { quoteRequests, loading, totalPages } = useQuoteRequest(page);
   const [selectedQuote, setSelectedQuote] = useState<null | QuoteRequestFull>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -18,6 +19,10 @@ const QuotesPage: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedQuote(null);
+  };
+
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value - 1);
   };
 
   return (
@@ -56,6 +61,15 @@ const QuotesPage: React.FC = () => {
           ))}
         </Box>
       )}
+
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Pagination
+          count={totalPages}
+          page={page + 1}
+          onChange={handlePageChange}
+          color="primary"
+        />
+      </Box>
 
       <QuoteRequestModal
         open={isModalOpen}

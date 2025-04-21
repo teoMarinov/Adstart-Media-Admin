@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 import LoginPage from "../pages/LoginPage";
 import QuotesPage from "../pages/QuotesPage";
 
-// PrivateRoute wrapper
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useAuth();
 
@@ -15,7 +14,6 @@ const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   return children;
 };
 
-// Routes component
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
