@@ -3,10 +3,18 @@ import * as Yup from "yup";
 import { TextField, Button, Typography, Box, Paper } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { login } = useAuth();
+  const { user, logout, login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      logout();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formik = useFormik({
     initialValues: {
