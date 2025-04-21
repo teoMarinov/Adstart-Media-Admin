@@ -48,31 +48,31 @@ const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
           Created At: {new Date(data.createdAt).toLocaleString()}
         </Typography>
 
-        <Divider sx={{ mb: 1, borderColor: "divider" }} />
+        <Divider sx={{ mb: 1.5, borderColor: "divider" }} />
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Price Range:</strong> {data.priceRange}
         </Typography>
 
-        <Divider sx={{ my: 1, borderColor: "divider" }} />
+        <Divider sx={{ my: 1.5, borderColor: "divider" }} />
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Full Name:</strong> {data.fullname}
         </Typography>
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Service:</strong> {data.service}
         </Typography>
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Email:</strong> {data.email}
         </Typography>
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Phone Number:</strong> {data.phoneNumber}
         </Typography>
 
-        <Typography variant="body2" sx={{ mb: 0.5 }}>
+        <Typography variant="body2" sx={{ mb: 1 }}>
           <strong>Company:</strong> {data.company}
         </Typography>
 
