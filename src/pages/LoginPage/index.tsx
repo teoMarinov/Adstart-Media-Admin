@@ -1,12 +1,10 @@
-import React from "react";
-import { TextField, Button, Typography, Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { TextField, Button, Typography, Box, Paper } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import styles from "./styles.module.scss";
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -24,7 +22,7 @@ const LoginPage: React.FC = () => {
         await login(values);
         navigate("/quotes");
       } catch (error: unknown) {
-        console.error(error);
+        console.error("Login failed:", error);
         setErrors({ username: "Invalid credentials" });
       } finally {
         setSubmitting(false);
@@ -33,45 +31,83 @@ const LoginPage: React.FC = () => {
   });
 
   return (
-    <Box className={styles.container}>
-      <Typography variant="h5">Login</Typography>
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="username"
-          name="username"
-          label="Username"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.username && Boolean(formik.errors.username)}
-          helperText={formik.touched.username && formik.errors.username}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          margin="normal"
-        />
-        <Button
-          className={styles.button}
-          color="primary"
-          variant="contained"
-          fullWidth
-          type="submit"
-          disabled={formik.isSubmitting}
-        >
-          {formik.isSubmitting ? "Logging in..." : "Login"}
-        </Button>
-      </form>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "#f9f9f9",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        p: 2,
+      }}
+    >
+      <Typography variant="h4" fontWeight="bold" mb={1}>
+        Welcome back
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mb={4}>
+        Please log in to your account
+      </Typography>
+
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          borderRadius: "20px",
+          maxWidth: "400px",
+          width: "100%",
+        }}
+      >
+        <form onSubmit={formik.handleSubmit}>
+          <Typography variant="h6" fontWeight="medium" mb={2}>
+            Login details
+          </Typography>
+
+          <TextField
+            fullWidth
+            id="username"
+            name="username"
+            label="Username"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            error={formik.touched.username && Boolean(formik.errors.username)}
+            helperText={formik.touched.username && formik.errors.username}
+            sx={{ mb: 3 }}
+          />
+
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            sx={{ mb: 4 }}
+          />
+
+          <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            sx={{
+              backgroundColor: "#4A3AFF",
+              color: "white",
+              borderRadius: "30px",
+              textTransform: "none",
+              fontSize: "16px",
+              p: 1.5,
+              "&:hover": {
+                backgroundColor: "#3e33d3",
+              },
+            }}
+          >
+            Log In
+          </Button>
+        </form>
+      </Paper>
     </Box>
   );
 };
