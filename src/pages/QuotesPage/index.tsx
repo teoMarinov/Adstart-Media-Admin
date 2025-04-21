@@ -25,7 +25,7 @@ const QuotesPage: React.FC = () => {
       <Typography
         variant="h4"
         gutterBottom
-        sx={{ fontWeight: "bold", color: "#4A3AFF", textAlign: "center" }}
+        sx={{ fontWeight: "bold", color: "primary.main", textAlign: "center" }}
       >
         Project Quote Requests
       </Typography>

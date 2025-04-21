@@ -29,24 +29,24 @@ const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
           boxShadow: 24,
           p: 3,
           borderRadius: 1,
-          border: `#D9DBE9`
+          border: `divider`
         }}
       >
         <Typography
           variant="h6"
           gutterBottom
-          sx={{ fontWeight: "bold", color: "#4A3AFF", textAlign: "center" }}
+          sx={{ fontWeight: "bold", color: "primary.main", textAlign: "center" }}
         >
           Quote Request Details
         </Typography>
         <Typography variant="subtitle2" gutterBottom color="textSecondary">
           Created At: {new Date(data.createdAt).toLocaleString()}
         </Typography>
-        <Divider sx={{ mb: 1, borderColor: "#D9DBE9" }} />{" "}
+        <Divider sx={{ mb: 1, borderColor: "divider" }} />{" "}
         <Typography variant="body2" sx={{ mb: 0.5 }}>
           <strong>Price Range:</strong> {data.priceRange}
         </Typography>
-        <Divider sx={{ my: 1, borderColor: "#D9DBE9" }} />{" "}
+        <Divider sx={{ my: 1, borderColor: "divider" }} />{" "}
         <Typography variant="body2" sx={{ mb: 0.5 }}>
           <strong>Service:</strong> {data.service}
         </Typography>
@@ -67,11 +67,11 @@ const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
             variant="contained"
             onClick={onClose}
             sx={{
-              backgroundColor: "#4A3AFF",
+              backgroundColor: "primary.main",
               borderRadius: "20px",
               textTransform: "none",
               px: 3,
-              "&:hover": { backgroundColor: "#3a2ed8" },
+              "&:hover": { backgroundColor: "primary.light" },
             }}
           >
             Close
