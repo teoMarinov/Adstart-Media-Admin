@@ -22,7 +22,16 @@ const QuotesPage = () => {
 
   const [service, setService] = useState("");
   const [fromDate, setFromDate] = useState<Dayjs | null>(null);
-  const [toDate, settoDate] = useState<Dayjs | null>(null);
+
+  const [toDate, setToDate] = useState<Dayjs | null>(null);
+
+  const handleSetFromDatge = (date: Dayjs | null) => {
+    if (date && toDate && date.diff(toDate) > 0) {
+      setToDate(null);
+    }
+
+    setFromDate(date);
+  };
 
   const { quoteRequests, loading, totalPages } = useQuoteRequest({
     page,
@@ -84,7 +93,7 @@ const QuotesPage = () => {
           <DatePicker
             label="From Date"
             value={fromDate}
-            onChange={(date) => setFromDate(date)}
+            onChange={(date) => handleSetFromDatge(date)}
             slotProps={{ textField: { fullWidth: true } }}
           />
         </Grid>
@@ -93,7 +102,8 @@ const QuotesPage = () => {
           <DatePicker
             label="End Date"
             value={toDate}
-            onChange={(date) => settoDate(date)}
+            minDate={fromDate || undefined}
+            onChange={(date) => setToDate(date)}
             slotProps={{ textField: { fullWidth: true } }}
           />
         </Grid>
