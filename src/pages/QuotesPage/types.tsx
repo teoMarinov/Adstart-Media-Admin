@@ -12,6 +12,13 @@ export interface QuoteRequestFull extends QuoteRequest {
   fullname: string;
 }
 
+export interface UseQuoteRequestOptions {
+  page: number;
+  service?: string;
+  fromDate?: string;
+  toDate?: string;
+}
+
 export enum QuoteRequestPriceRange {
   LOW = "$5.000-$10.000",
   MEDIUM = "$10.000-$20.000",

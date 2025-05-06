@@ -1,14 +1,39 @@
 import React, { useState } from "react";
-import { Container, Typography, Box, CircularProgress, Pagination } from "@mui/material";
+import {
+  Box,
+  Grid,
+  MenuItem,
+  TextField,
+  Container,
+  Pagination,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
+import { Dayjs } from "dayjs";
 import useQuoteRequest from "./hook";
+import { QuoteRequestFull } from "./types";
+import { DatePicker } from "@mui/x-date-pickers";
 import QuoteRequestCard from "./components/QuoteRequestCard";
 import QuoteRequestModal from "./components/QuoteRequestModal";
-import { QuoteRequestFull } from "./types";
+import { serviceOptions } from "./config";
 
-const QuotesPage: React.FC = () => {
+const QuotesPage = () => {
   const [page, setPage] = useState(0);
-  const { quoteRequests, loading, totalPages } = useQuoteRequest(page);
-  const [selectedQuote, setSelectedQuote] = useState<null | QuoteRequestFull>(null);
+
+  const [service, setService] = useState("");
+  const [fromDate, setFromDate] = useState<Dayjs | null>(null);
+  const [toDate, settoDate] = useState<Dayjs | null>(null);
+
+  const { quoteRequests, loading, totalPages } = useQuoteRequest({
+    page,
+    service: service || undefined,
+    fromDate: fromDate ? fromDate.format("YYYY-MM-DD") : undefined,
+    toDate: toDate ? toDate.format("YYYY-MM-DD") : undefined,
+  });
+
+  const [selectedQuote, setSelectedQuote] = useState<null | QuoteRequestFull>(
+    null
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCardClick = (quoteRequest: QuoteRequestFull) => {
@@ -21,7 +46,10 @@ const QuotesPage: React.FC = () => {
     setSelectedQuote(null);
   };
 
-  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
     setPage(value - 1);
   };
 
@@ -34,6 +62,42 @@ const QuotesPage: React.FC = () => {
       >
         Project Quote Requests
       </Typography>
+
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid size={3}>
+          <TextField
+            label="Service"
+            select
+            fullWidth
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+          >
+            {serviceOptions.map(({ title, value }) => (
+              <MenuItem key={value} value={value}>
+                {title}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
+        <Grid>
+          <DatePicker
+            label="From Date"
+            value={fromDate}
+            onChange={(date) => setFromDate(date)}
+            slotProps={{ textField: { fullWidth: true } }}
+          />
+        </Grid>
+
+        <Grid>
+          <DatePicker
+            label="End Date"
+            value={toDate}
+            onChange={(date) => settoDate(date)}
+            slotProps={{ textField: { fullWidth: true } }}
+          />
+        </Grid>
+      </Grid>
 
       {loading ? (
         <Box
